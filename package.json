@@ -1,0 +1,26 @@
+{
+  "name": "id-chat",
+  "version": "1.0.0",
+  "description": "Join a room to chat with friends!",
+  "dependencies": {
+    "@socket.io/admin-ui": "^0.5.1",
+    "dotenv": "^16.1.4",
+    "socket.io": "^4.6.2",
+    "socket.io-client": "^4.6.2"
+  },
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "node ./src/app.js"
+  },
+  "keywords": [
+    "chat",
+    "socket.io",
+    "realtime"
+  ],
+  "engines": {
+    "node": ">=16.x"
+  },
+  "author": "Lakshya Raj",
+  "license": "MIT",
+  "private": true
+}

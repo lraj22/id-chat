@@ -1,0 +1,58 @@
+/* styles.css - styling the website */
+
+/* generic styles */
+.monospace{font-family:monospace}
+.yellowtext{color:yellow}
+.bluetext{color:#113399}
+.infotext{color:black}
+code{background-color:#cccccc;padding:2px;font-family:monospace;font-size:larger;border-radius:2px}
+
+/* when the user is on the chat screen */
+body[data-in-chat="true"] div#in-chat{display:flex;flex-direction:row;width:100vw;height:100vh}
+body[data-in-chat="true"] div#not-in-chat{display:none}
+body[data-in-chat="true"] input:focus,button:focus{border:1px solid orange}
+#sidebar{display:flex;flex-direction:column;flex:1 0 25%;max-width:400px;background-color:white;color:black;padding:1em}
+#mainContent{flex-grow:1;display:flex;flex-direction:column;box-shadow:-2px 0 4px 2px rgba(0,0,0,0.2)}
+#yourname{margin-top:0}
+#peopleListHeader{font-weight:bold;margin:0.3em;font-size:large}
+#peopleList{margin:0;padding:0}
+#peopleList>li{list-style-type:none;padding:0.3em;border-radius:4px;transition:background-color 0.25s}
+#peopleList>li:hover{background-color:rgba(0,0,0,0.1)}
+#actionBar{display:flex;justify-content:space-between}
+.icon-btn{padding:0.3em;font-weight:700;transition:background-color 0.1s;border-radius:4px}
+.icon-btn:hover{background-color:rgba(0,0,0,0.2)}
+
+/* title and theme */
+#titleBar{background-color:#efefef;box-shadow:0 0.3rem 8px 4px rgba(0,0,0,0.1);position:relative}
+#roomNameDisplay{margin:0;font-size:1rem;line-height:2.4rem;padding-left:0.5rem}
+#themeBar{padding:0.1rem;background-color:#113399}
+
+/* chat input form  */
+#sendForm{background-color:#efefef;padding:0.25rem;display:flex;box-shadow:0 -2px 2px 2px rgba(0,0,0,0.1);position:relative}
+#chatInput{flex-grow:1;margin:0.25rem;outline:none}
+#information,#sendButton{line-height:2.7rem;padding:0 10px;cursor:pointer}
+
+/* message list style */
+#messages{background-color:#efefef;list-style-type:none;margin:0;padding:0;overflow:auto;display:flex;flex-direction:column;flex-grow:1}
+.flexFill1{flex-grow:1;padding:0}
+#messages>li{padding:0.5rem 1rem;word-break:break-word}
+#messages .nameColor{color:#113399}
+#messages>li:nth-child(odd){background-color:#efefef}
+#messages>li:nth-child(even){background-color:#d4d4d4}
+#messages p{margin-top:0.1em;margin-bottom:0.4em}
+
+/* go to bottom */
+#gotobottom{position:fixed;bottom:4.2rem;right:1rem;padding:0.5rem;background-color:white;border-radius:50%;box-shadow:0 0 1rem 1rem rgba(0,0,0,0.1);border:1px solid #444444;cursor:pointer}
+.material-symbols-outlined{-webkit-user-select:none;user-select:none}
+
+/* cover and elements */
+.cover{width:100%;height:100%;position:fixed;top:0;left:0;z-index:1;background-color:#888888;background-color:rgba(0,0,0,0.55)}
+.popup{background-color:white;border-radius:8px;padding:10px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);overflow:hidden}
+#infoPopup{padding:2rem 2.5rem;padding-top:0;box-sizing:content-box}
+.popup input,.popup button{border:1px solid #bbbbbb;outline:none;padding:5px;font-family:20px;border-radius:2px}
+.popup button:focus{border:1px solid #888888}
+.popup button:active{border:1px solid #444444}
+.popup button{margin:0 0.5em}
+.popup p{text-align:center}
+#logout{color:red}
+#reconnect{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1rem;border:1px solid black;padding:0.5em 1em;border-radius:0.2em;cursor:pointer}
