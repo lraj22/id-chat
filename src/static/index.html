@@ -1,0 +1,99 @@
+<!-- index.html - the client side of the chat app -->
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Join a room to chat with friends!">
+    <base target="_blank">
+    
+    <!-- include our styles and socket.io -->
+    <link rel="stylesheet" href="./$AUTO_VERSIONING_TAG$/assets/styles.css">
+    <script src="./$AUTO_VERSIONING_TAG$/assets/socket.io/socket.io.min.js" defer></script>
+    <script src="./$AUTO_VERSIONING_TAG$/lib/notyf.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js" defer></script>
+    <link rel="preload" href="./$AUTO_VERSIONING_TAG$/lib/notyf.min.css" as="style" onload="this.onload=null;this.rel='stylesheet';">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" as="style" onload="this.onload=null;this.rel='stylesheet';">
+    <noscript><link rel="stylesheet" href="./$AUTO_VERSIONING_TAG$/lib/notyf.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"></noscript>
+    <style>
+      html,body{width:100vw;height:100vh}
+      body{margin:0}
+      *{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif}
+      .hidden{display:none!important}
+      body[data-in-chat="false"]{background-image:url(./$AUTO_VERSIONING_TAG$/assets/bg.png);background-size:50px 50px}
+      body[data-in-chat="false"] h1{margin:0;color:#444444;font-family:Cambria,Cochin,Georgia,Times,'Times New Roman',serif;font-size:3rem;letter-spacing:1px}
+      body[data-in-chat="false"] #in-chat{display:none}
+      #not-in-chat{width:50vw;min-width:300px;max-width:600px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid #bbbbbb;border-radius:4px;padding:1em;text-align:center;background-color:white;box-shadow:0 0 16px 2px rgba(0,0,0,0.1)}
+      label{font-size:16px}
+      #join{padding:6px 12px;width:100%;font-size:1rem}
+      input{padding:4px;font-size:16px}
+      input,#join{border-radius:4px;border:1px solid #bbbbbb;outline:none}
+      h1{text-align:center}
+      input:focus,#join:focus,#chatInput:focus,#sendButton:focus{border:1px solid #444444}
+      ::-webkit-scrollbar{height:10px;width:10px}
+      ::-webkit-scrollbar-track{background-color:transparent}
+      ::-webkit-scrollbar-thumb{background-color:darkgray}
+    </style>
+  </head>
+  <body data-in-chat="false">
+    <!-- when you're not in the chat, you'll see this -->
+    <div id="not-in-chat">
+      <h1>ID Chat</h1>
+      <p>Enter your name and a chat room ID below to join.</p>
+      <label for="username">Name: </label>
+      <input id="username" type="text" spellcheck="false" title="Your username"><br><br>
+      <label for="roomid">Room: </label>
+      <input id="roomid" type="text" spellcheck="false" title="The room you want to join"><br><br>
+      <button type="button" id="join" title="Join">Join</button>
+    </div>
+    
+    <!-- when you are in the chat, you'll see this -->
+    <div id="in-chat">
+      <div class="cover hidden" id="disconnected">
+        <button type="button" id="reconnect">Reconnect</button>
+      </div>
+      
+      <div id="sidebar" class="hidden">
+        <p id="yourname"></p>
+        <p id="peopleListHeader">In the room (<span id="numofpeople"></span>)</p>
+        <ul id="peopleList"></ul>
+        <div class="flexFill1"></div>
+        <div id="actionBar">
+          <span class="material-symbols-outlined icon-btn" id="getlink" title="Get link to auto-join with current name and room">link</span>
+          <span class="material-symbols-outlined icon-btn" id="togglemute" title="Toggle mute">volume_mute</span>
+          <span class="material-symbols-outlined icon-btn" id="logout" title="Log out of chat">logout</span>
+        </div>
+      </div>
+      
+      <div id="mainContent">
+        <!-- title and theme -->
+        <div id="titleBar">
+          <p id="roomNameDisplay">Loading...</p>
+        </div>
+        <div id="themeBar"></div>
+        
+        <!-- message list -->
+        <ul id="messages">
+          <li class="flexFill1"></li>
+        </ul>
+        
+        <!-- message entry -->
+        <div id="sendForm">
+          <span class="material-symbols-outlined" id="information" title="Settings (Alt+S)">settings</span>
+          <input id="chatInput" placeholder="Enter your message here" title="Type your message here">
+          <span class="material-symbols-outlined" id="sendButton" title="Click to send">send</span>
+        </div>
+      </div>
+      
+      <!-- go to bottom button -->
+      <div class="material-symbols-outlined hidden" id="gotobottom">arrow_downward</div>
+      <!-- notification bell if users have it enabled -->
+      <audio id="ding" src="./$AUTO_VERSIONING_TAG$/assets/ding.mp3"></audio>
+    </div>
+    
+    <!-- include our client side scripts -->
+    <script src="./$AUTO_VERSIONING_TAG$/assets/common.js" defer></script>
+    <script src="./$AUTO_VERSIONING_TAG$/assets/client.js" defer></script>
+  </body>
+</html>
